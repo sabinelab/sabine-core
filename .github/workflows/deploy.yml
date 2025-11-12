@@ -36,4 +36,4 @@ jobs:
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: |
-          ssh prod 'cd sabine/core && git pull && GITHUB_AUTH_TOKEN=$NPM_AUTH_TOKEN docker compose up -d --build'
+          ssh prod "cd sabine/core && git pull && export GITHUB_AUTH_TOKEN=$NPM_AUTH_TOKEN && docker compose up -d --build"
