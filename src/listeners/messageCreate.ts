@@ -14,7 +14,7 @@ export default createListener({
     if(!message.content.toLowerCase().startsWith(process.env.PREFIX)) return
 
     const messageArray = message.content.split(' ')
-    let command = messageArray.shift()!.toLowerCase()
+    const command = messageArray.shift()!.toLowerCase()
     let args = messageArray.slice(0)
     let cmd = client.commands.get(command.slice(process.env.PREFIX.length)) || client.commands.get(client.aliases.get(command.slice(process.env.PREFIX.length))!)
 
