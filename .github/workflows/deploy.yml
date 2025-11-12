@@ -9,8 +9,33 @@ on:
       - 'README*'
       - 'LICENSE'
 jobs:
+  build-and-push:
+    name: 'Build and Push to Registry'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: Build and push Docker image
+        env:
+          GITHUB_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: |
+          docker build \
+            --build-arg GITHUB_AUTH_TOKEN=${GITHUB_AUTH_TOKEN} \
+            -t ghcr.io/sabinelab/sabine-core:latest \
+            .
+          docker push ghcr.io/sabinelab/sabine-core:latest
+
   deploy:
     name: 'Deploy to Production'
+    needs: build-and-push
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
@@ -32,8 +57,9 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.HOST }}
           SSH_PORT: 22
-      - name: update sabine core
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          
+      - name: Pull image and restart service
         run: |
-          ssh prod "cd sabine/core && git pull && export GITHUB_AUTH_TOKEN=$NPM_AUTH_TOKEN && docker compose up -d --build"
+          ssh prod "cd sabine/core && \
+          docker pull ghcr.io/sabinelab/sabine-core:latest && \
+          docker compose up -d"
