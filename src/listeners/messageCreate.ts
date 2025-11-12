@@ -15,8 +15,8 @@ export default createListener({
 
     const messageArray = message.content.split(' ')
     const command = messageArray.shift()!.toLowerCase()
-    let args = messageArray.slice(0)
-    let cmd = client.commands.get(command.slice(process.env.PREFIX.length)) || client.commands.get(client.aliases.get(command.slice(process.env.PREFIX.length))!)
+    const args = messageArray.slice(0)
+    const cmd = client.commands.get(command.slice(process.env.PREFIX.length)) || client.commands.get(client.aliases.get(command.slice(process.env.PREFIX.length))!)
 
     if(!cmd) return
     if(cmd.onlyDev && message.author.id !== '441932495693414410') return
