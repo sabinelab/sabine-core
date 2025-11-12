@@ -24,7 +24,7 @@ export default class Logger {
   }
 
   public async error(error: Error | string, shardId?: number) {
-    let ignoredErrors = [
+    const ignoredErrors = [
       'Missing Permissions',
       'AbortError: This operation was aborted'
     ]
