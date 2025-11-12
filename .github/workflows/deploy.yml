@@ -59,7 +59,11 @@ jobs:
           SSH_PORT: 22
           
       - name: Pull image and restart service
+        env:
+          GH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          GH_USER: ${{ github.actor }}
         run: |
-          ssh prod "cd sabine/core && \
+          ssh prod "echo $GH_TOKEN | docker login ghcr.io -u $GH_USER --password-stdin && \
+          cd sabine/core && \
           docker pull ghcr.io/sabinelab/sabine-core:latest && \
           docker compose up -d"
