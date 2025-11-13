@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@fastify/type-provider-typebox": "^5.2.0",
+    "@fastify/type-provider-typebox": "^6.1.0",
     "@iamtraction/google-translate": "^2.0.1",
     "@prisma/client": "^6.19.0",
     "@sabinelab/players": "^1.1.1",
@@ -13,7 +13,7 @@
     "moment": "^2.30.1",
     "oceanic-transcripts": "^1.1.1",
     "oceanic.js": "^1.13.0",
-    "stripe": "^18.5.0"
+    "stripe": "^19.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -24,11 +24,11 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.4"
   },
-  "name": "sabine-mod",
+  "name": "sabine-core",
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
-    "test": "node --experimental-strip-types --env-file=.env test.ts",
+    "test": "node  test.ts",
     "start": "node dist/index.js",
     "dev": "node --watch src/index.ts",
     "build": "pnpm lint && rm -rf dist && tsc",
