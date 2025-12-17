@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2023",
-    "module": "nodenext",
+    "module": "ES2022",
     "lib": ["ES2023", "DOM"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -12,7 +12,13 @@
     "rewriteRelativeImportExtensions": true,
     "verbatimModuleSyntax": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@generated": ["./src/database/generated/client"],
+      "@db": ["./src/database"]
+    }
   },
   "exclude": ["node_modules"]
 }
