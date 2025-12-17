@@ -38,7 +38,10 @@ export default createCommand({
           radiant_packs: 0,
           immortal_packs: 0,
           platinum_packs: 0,
-          ascendant_packs: 0
+          ascendant_packs: 0,
+          coins: 0,
+          daily_time: null,
+          claim_time: null
         }
       }),
       prisma.match.deleteMany(),
