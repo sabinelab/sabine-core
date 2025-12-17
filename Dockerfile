@@ -1,4 +1,4 @@
-FROM node:24.11.1-alpine
+FROM node:24.12.0-alpine
 
 RUN corepack enable pnpm
 
@@ -8,7 +8,7 @@ COPY package.json pnpm*.yaml /app/
 COPY . .
 
 RUN pnpm i --frozen-lockfile
-RUN pnpm prisma generate
+RUN pnpm gen
 RUN pnpm build
 
 CMD ["pnpm", "start"]
