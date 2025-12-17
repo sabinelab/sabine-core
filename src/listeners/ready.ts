@@ -7,7 +7,7 @@ export default createListener({
   async run(client) {
     Logger.send(`${client.user?.tag} online!`)
 
-    const removeUserFromBlacklist = async () => {
+    const removeUserFromBlacklist = async() => {
       const blacklist = await client.prisma.blacklist.findMany({
         where: {
           ends_at: {
@@ -36,7 +36,7 @@ export default createListener({
         }
       }
     }
-    const removeGuildFromBlacklist = async () => {
+    const removeGuildFromBlacklist = async() => {
       const blacklist = await client.prisma.blacklist.findMany({
         where: {
           ends_at: {
@@ -66,7 +66,7 @@ export default createListener({
       }
     }
 
-    const removePremium = async () => {
+    const removePremium = async() => {
       const users = await client.prisma.user.findMany({
         include: {
           premium: true
@@ -105,7 +105,7 @@ export default createListener({
         })
       }
     }
-    const sendPremiumWarn = async () => {
+    const sendPremiumWarn = async() => {
       const users = await client.prisma.user.findMany({
         include: {
           premium: true
@@ -137,7 +137,7 @@ export default createListener({
         })
       }
     }
-    const deleteInactiveThreads = async () => {
+    const deleteInactiveThreads = async() => {
       const guild = client.guilds.cache.get('1233965003850125433')!
       const channels = guild.channels.cache.filter(c => ['1313902950426345492', '1313588710637568030'].includes(c.id)) as Collection<string, TextChannel>
 
@@ -148,7 +148,7 @@ export default createListener({
       }
     }
 
-    const deleteKeys = async () => {
+    const deleteKeys = async() => {
       const keysToDelete = await client.prisma.key.findMany({
         where: {
           expires_at: {
@@ -181,7 +181,7 @@ export default createListener({
       ])
     }
 
-    const verifyKeyBooster = async () => {
+    const verifyKeyBooster = async() => {
       const keys = await client.prisma.key.findMany({
         where: {
           type: 'BOOSTER'
@@ -218,7 +218,7 @@ export default createListener({
         })
       ])
     }
-    const verifyPartners = async () => {
+    const verifyPartners = async() => {
       const channel = client.channels.cache.get('1346170715165950086') as TextChannel
       const message = channel.messages.cache.find(m => m.author.id === client.user?.id)
 
@@ -261,7 +261,7 @@ export default createListener({
         await message.edit({ content })
       }
     }
-    const runTasks = async () => {
+    const runTasks = async() => {
       await deleteKeys().catch(e => new Logger(client).error(e))
       await verifyKeyBooster().catch(e => new Logger(client).error(e))
       await deleteInactiveThreads().catch(e => new Logger(client).error(e))

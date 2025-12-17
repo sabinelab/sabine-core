@@ -112,7 +112,7 @@ export default createListener({
           filename: `transcript-${(interaction.channel as TextChannel).name.replace('ticket_', '')}.html`
         })
 
-        setTimeout(async () => {
+        setTimeout(async() => {
           await interaction.channel!.delete()
 
           const channel = client.channels.cache.get('1313845851998781562') as TextChannel

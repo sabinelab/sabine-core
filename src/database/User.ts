@@ -6,7 +6,7 @@ import {
 import { client } from '..'
 import EmbedBuilder from '../structures/builders/EmbedBuilder'
 import { TextChannel } from 'discord.js'
-import { prisma, redis } from '@/database'
+import { prisma } from '@/database'
 import { updateCache, voidCatch } from '@/database/update-cache'
 import { hydrateData } from '@/database/hydrate-data'
 
@@ -108,7 +108,7 @@ export class SabineUser implements User {
     return user
   }
   public static async fetch(id: string) {
-    const cachedData = await redis.get(`user:${id}`)
+    const cachedData = await Bun.redis.get(`user:${id}`)
 
     if(cachedData) {
       const hydrated = hydrateData<typeof this>(JSON.parse(cachedData))
@@ -155,7 +155,7 @@ export class SabineUser implements User {
         data: updates
       })
     ])
-    await redis.del(`user:${this.id}`)
+    await Bun.redis.del(`user:${this.id}`)
 
     return this
   }
@@ -203,7 +203,7 @@ export class SabineUser implements User {
         }
       })
     ])
-    await redis.del(`user:${this.id}`)
+    await Bun.redis.del(`user:${this.id}`)
 
     const channel = client.channels.cache.get(process.env.USERS_LOG) as TextChannel
 

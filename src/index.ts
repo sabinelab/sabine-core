@@ -5,8 +5,6 @@ import App from './structures/client/App'
 import { SabineUser } from './database'
 import EmbedBuilder from './structures/builders/EmbedBuilder'
 
-console.log(SabineUser)
-
 export const client = new App({
   allowedMentions: {
     parse: ['users', 'roles'],
@@ -19,7 +17,7 @@ client.connect()
 
 const cache = new Set<string>()
 
-const webhook_route: FastifyPluginAsyncTypebox = async (fastify) => {
+const webhook_route: FastifyPluginAsyncTypebox = async(fastify) => {
   fastify.post('/mercadopago', {
     schema: {
       body: Type.Object({
@@ -29,7 +27,7 @@ const webhook_route: FastifyPluginAsyncTypebox = async (fastify) => {
         })
       })
     }
-  }, async (req) => {
+  }, async(req) => {
     if(req.body.type === 'payment') {
       const details = await fetch(
         `https://api.mercadopago.com/v1/payments/${req.body.data.id}`,
@@ -87,7 +85,7 @@ const webhook_route: FastifyPluginAsyncTypebox = async (fastify) => {
           })
         })
       }
-    }, async (req, reply) => {
+    }, async(req, reply) => {
       if(req.body.type === 'checkout.session.completed') {
         const session = req.body.data.object
 
