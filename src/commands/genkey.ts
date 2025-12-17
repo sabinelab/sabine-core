@@ -1,4 +1,4 @@
-import createCommand from '../structures/command/createCommand.ts'
+import createCommand from '../structures/command/createCommand'
 
 export default createCommand({
   name: 'genkey',
@@ -13,13 +13,13 @@ export default createCommand({
         active: false
       }
     })
-    
+
     ctx.message.author.createDM().then(dm => dm.createMessage({
       content: `Your Key Booster is \`${key.id}\`.\nDo not share with ANYONE.`
     }))
-    .catch(() => ctx.send('Open your DM for this server.'))
-    .then(() => {
-      ctx.message.createReaction('success:1300882212190945292')
-    })
+      .catch(() => ctx.send('Open your DM for this server.'))
+      .then(() => {
+        ctx.message.createReaction('success:1300882212190945292')
+      })
   }
 })

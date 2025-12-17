@@ -1,6 +1,6 @@
 import { TextChannel } from 'oceanic.js'
-import createListener from '../structures/client/createListener.ts'
-import Logger from '../structures/util/Logger.ts'
+import createListener from '../structures/client/createListener'
+import Logger from '../structures/util/Logger'
 
 export default createListener({
   name: 'ready',
@@ -86,7 +86,7 @@ export default createListener({
           member.user.createDM().then(dm => dm.createMessage({
             content: 'Your premium has expired! If you want to renew your premium, go to https://canary.discord.com/channels/1233965003850125433/1313902950426345492 and select a premium!'
           }))
-          .catch()
+            .catch()
         }
 
         await client.prisma.user.update({
@@ -114,7 +114,7 @@ export default createListener({
       for(const user of users) {
         if(user.warned) continue
         if(!user.premium) continue
-        
+
         const member = client.guilds.get('1233965003850125433')!.members.get(user.id)
 
         if((user.premium.expires_at.getTime() - Date.now()) <= 2.592e+8) {
@@ -122,7 +122,7 @@ export default createListener({
             member.user.createDM().then(dm => dm.createMessage({
               content: `Your premium will expires <t:${(user.premium!.expires_at.getTime() / 1000).toFixed(0)}:R>! If you want to renew your premium, go to https://canary.discord.com/channels/1233965003850125433/1313902950426345492 and select a premium!`
             }))
-            .catch(() => {})
+              .catch(() => { })
           }
         }
 
@@ -161,7 +161,7 @@ export default createListener({
       })
 
       if(!keysToDelete.length) return
-      
+
       await client.prisma.$transaction([
         client.prisma.guildKey.deleteMany({
           where: {
@@ -188,7 +188,7 @@ export default createListener({
       })
 
       if(!keys.length) return
-      
+
       const keysToDelete: string[] = []
 
       for(const key of keys) {

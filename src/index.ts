@@ -1,9 +1,9 @@
 import { type FastifyPluginAsyncTypebox, Type } from '@fastify/type-provider-typebox'
 import fastify from 'fastify'
 import { TextChannel } from 'oceanic.js'
-import App from './structures/client/App.ts'
-import { SabineUser } from './database/index.ts'
-import EmbedBuilder from './structures/builders/EmbedBuilder.ts'
+import App from './structures/client/App'
+import { SabineUser } from './database'
+import EmbedBuilder from './structures/builders/EmbedBuilder'
 
 export const client = new App({
   auth: 'Bot ' + process.env.BOT_TOKEN,

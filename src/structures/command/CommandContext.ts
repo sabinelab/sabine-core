@@ -1,6 +1,6 @@
 import { type File, Guild, type InteractionContent, Message, TextChannel } from 'oceanic.js'
-import App from '../client/App.ts'
-import { SabineGuild, SabineUser } from '../../database/index.ts'
+import App from '../client/App'
+import { SabineGuild, SabineUser } from '../../database'
 
 type Database = {
   user: SabineUser,

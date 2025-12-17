@@ -1,9 +1,9 @@
 import { CategoryChannel, ComponentInteraction, Constants, TextChannel } from 'oceanic.js'
 import transcript from 'oceanic-transcripts'
 import { MercadoPagoConfig, Preference } from 'mercadopago'
-import createListener from '../structures/client/createListener.ts'
-import EmbedBuilder from '../structures/builders/EmbedBuilder.ts'
-import ButtonBuilder from '../structures/builders/ButtonBuilder.ts'
+import createListener from '../structures/client/createListener'
+import EmbedBuilder from '../structures/builders/EmbedBuilder'
+import ButtonBuilder from '../structures/builders/ButtonBuilder'
 import Stripe from 'stripe'
 
 const mercadopago = new MercadoPagoConfig({ accessToken: process.env.MP_TOKEN })
@@ -152,7 +152,7 @@ export default createListener({
 
             if(!res.init_point) {
               await thread.createMessage({ content: `Não foi possível gerar o link de pagamento e a sua compra não pôde ser concluída.\nO tópico será excluído <t:${((Date.now() + 10000) / 1000).toFixed(0)}:R>` })
-              
+
               return setTimeout(() => thread.delete(), 10000)
             }
 

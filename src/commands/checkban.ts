@@ -1,4 +1,4 @@
-import createCommand from '../structures/command/createCommand.ts'
+import createCommand from '../structures/command/createCommand'
 
 export default createCommand({
   name: 'checkban',
@@ -9,7 +9,7 @@ export default createCommand({
         const u = await getUser(ctx.args[1])
 
         if(!u) return await ctx.send('Enter a valid user ID.')
-        
+
         const ban = await client.prisma.blacklist.findUnique({
           where: {
             id: u.id

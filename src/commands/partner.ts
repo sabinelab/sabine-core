@@ -1,5 +1,5 @@
-import { SabineGuild } from '../database/index.ts'
-import createCommand from '../structures/command/createCommand.ts'
+import { prisma, redis, SabineGuild } from '@db'
+import createCommand from '../structures/command/createCommand'
 
 export default createCommand({
   name: 'partner',
@@ -13,10 +13,16 @@ export default createCommand({
           return await ctx.send('This guild does not exists in database')
         }
 
-        guild.partner = true
-        guild.invite = ctx.args[2]
-
-        await guild.save()
+        await prisma.guild.update({
+          where: {
+            id: guild.id
+          },
+          data: {
+            partner: true,
+            invite: ctx.args[2]
+          }
+        })
+        await redis.del(`guild:${guild.id}`)
         await ctx.send('Guild added!')
       },
       remove: async() => {
@@ -26,20 +32,23 @@ export default createCommand({
           return await ctx.send('This guild does not exists in database')
         }
 
-        guild.partner = null
-        guild.invite = null
-
-        await guild.save()
+        await prisma.guild.update({
+          where: {
+            id: guild.id
+          },
+          data: {
+            partner: null,
+            invite: null
+          }
+        })
+        await redis.del(`guild:${guild.id}`)
         await ctx.send('Guild removed!')
       }
     }
     if(
-      !['add', 'remove'].includes(ctx.args[0])
-      ||
-      !args[ctx.args[0] as 'add' | 'remove']
-      ||
-      !ctx.args[1]
-      ||
+      !['add', 'remove'].includes(ctx.args[0]) ||
+      !args[ctx.args[0] as 'add' | 'remove'] ||
+      !ctx.args[1] ||
       !ctx.args[2]
     ) {
       return await ctx.send(`Invalid argument! Use \`${process.env.PREFIX}partner add/remove [guild_id] [guild_invite]\``)

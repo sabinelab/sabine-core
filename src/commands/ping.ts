@@ -1,4 +1,4 @@
-import createCommand from '../structures/command/createCommand.ts'
+import createCommand from '../structures/command/createCommand'
 
 export default createCommand({
   name: 'ping',

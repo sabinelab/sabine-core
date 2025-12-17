@@ -1,8 +1,8 @@
 import { Constants, Message, TextChannel } from 'oceanic.js'
-import createListener from '../structures/client/createListener.ts'
-import { SabineGuild, SabineUser } from '../database/index.ts'
-import CommandContext from '../structures/command/CommandContext.ts'
-import Logger from '../structures/util/Logger.ts'
+import createListener from '../structures/client/createListener'
+import { SabineGuild, SabineUser } from '../database'
+import CommandContext from '../structures/command/CommandContext'
+import Logger from '../structures/util/Logger'
 
 export default createListener({
   name: 'messageCreate',
@@ -42,7 +42,7 @@ export default createListener({
       try {
         return await client.rest.users.get(user.replace(/[<@!>]/g, ''))
       }
-      catch (e) {
+      catch(e) {
         new Logger(client).error(e as Error)
       }
     }

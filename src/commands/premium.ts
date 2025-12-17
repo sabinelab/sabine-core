@@ -1,6 +1,6 @@
-import EmbedBuilder from '../structures/builders/EmbedBuilder.ts'
-import SelectMenuBuilder from '../structures/builders/SelectMenuBuilder.ts'
-import createCommand from '../structures/command/createCommand.ts'
+import EmbedBuilder from '../structures/builders/EmbedBuilder'
+import SelectMenuBuilder from '../structures/builders/SelectMenuBuilder'
+import createCommand from '../structures/command/createCommand'
 
 export default createCommand({
   name: 'premium',
@@ -46,7 +46,7 @@ export default createCommand({
           value: '- <:mercadopago:1313901326744293427> Mercado Pago\n- <:stripe:1409597720313987204> Stripe\n- <:credit_card:1409598374000463913> Card'
         }
       )
-      
+
     await ctx.send(menu.build(embed.build()))
   }
 })

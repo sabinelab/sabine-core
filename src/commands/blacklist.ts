@@ -1,5 +1,5 @@
 import ms from 'enhanced-ms'
-import createCommand from '../structures/command/createCommand.ts'
+import createCommand from '../structures/command/createCommand'
 
 export default createCommand({
   name: 'blacklist',
@@ -122,7 +122,7 @@ export default createCommand({
           })
 
           if(!blacklist) return await ctx.send('This guild is not banned.')
-          
+
           await client.prisma.blacklist.delete({
             where: {
               id: ctx.args[2],

@@ -1,7 +1,7 @@
 import { TextChannel } from 'oceanic.js'
 import ms from 'enhanced-ms'
 import translate from '@iamtraction/google-translate'
-import createCommand from '../structures/command/createCommand.ts'
+import createCommand from '../structures/command/createCommand'
 
 export default createCommand({
   name: 'timeout',

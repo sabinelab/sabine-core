@@ -1,5 +1,5 @@
 import { TextChannel } from 'oceanic.js'
-import createCommand from '../structures/command/createCommand.ts'
+import createCommand from '../structures/command/createCommand'
 
 export default createCommand({
   name: 'unban',
@@ -19,7 +19,7 @@ export default createCommand({
     await ctx.send(`\`${user.tag}\` (\`${user.id}\`) has been unbanned for ${ctx.message.author.mention}`)
 
     const channel = client?.getChannel(process.env.MOD_LOG) as TextChannel
-    
+
     await channel.createMessage({
       content: `\`${user.tag}\` (\`${user.id}\`) has been unbanned for ${ctx.message.author.mention}`
     })

@@ -1,6 +1,6 @@
 import { Member, User } from 'oceanic.js'
-import App from '../client/App.ts'
-import CommandContext from './CommandContext.ts'
+import App from '../client/App'
+import CommandContext from './CommandContext'
 
 type CommandOptions = {
   ctx: CommandContext

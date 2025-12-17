@@ -1,12 +1,10 @@
 import { Client, type ClientOptions } from 'oceanic.js'
 import { readdirSync } from 'node:fs'
 import path from 'path'
-import type { Command } from '../command/createCommand.ts'
-import Logger from '../util/Logger.ts'
-import { PrismaClient } from '@prisma/client'
+import type { Command } from '../command/createCommand'
+import Logger from '../util/Logger'
 import { fileURLToPath } from 'node:url'
-
-const prisma = new PrismaClient()
+import { prisma } from '@db'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

@@ -1,5 +1,5 @@
-import { SabineUser } from '../database/index.ts'
-import createCommand from '../structures/command/createCommand.ts'
+import { SabineUser } from '../database'
+import createCommand from '../structures/command/createCommand'
 
 export default createCommand({
   name: 'addpremium',
@@ -12,7 +12,7 @@ export default createCommand({
     }
 
     const user = await SabineUser.fetch(duser.id) ?? new SabineUser(duser.id)
-    
+
     await user.addPremium('ADD_PREMIUM_BY_COMMAND')
     await ctx.send(`Premium activated for ${duser.mention}`)
   }

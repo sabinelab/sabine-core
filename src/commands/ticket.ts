@@ -1,6 +1,6 @@
 import { TextChannel } from 'oceanic.js'
-import createCommand from '../structures/command/createCommand.ts'
-import ButtonBuilder from '../structures/builders/ButtonBuilder.ts'
+import createCommand from '../structures/command/createCommand'
+import ButtonBuilder from '../structures/builders/ButtonBuilder'
 
 export default createCommand({
   name: 'ticket',
@@ -29,7 +29,7 @@ export default createCommand({
         .setLabel('Create a Ticket')
         .setEmoji('🤝')
         .setCustomId('ticket')
-        
+
       await message.edit(button.build('## Customer Support Center\nIn this area, you can ask questions and solve issues with the bot by contacting the Sabine team.'))
     }
   }

@@ -1,6 +1,6 @@
 import { getPlayer } from '@sabinelab/players'
-import createCommand from '../structures/command/createCommand.ts'
-import { SabineUser } from '../database/index.ts'
+import createCommand from '../structures/command/createCommand'
+import { SabineUser } from '../database'
 
 export default createCommand({
   name: 'giveplayer',
@@ -29,7 +29,7 @@ export default createCommand({
     }
 
     await user.addPlayerToRoster(player.id.toString(), 'CLAIM_PLAYER_BY_COMMAND')
-    
+
     await ctx.send(`${_user.mention} received **${player.name} (${player.collection})** sucessfully!`)
   }
 })
