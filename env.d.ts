@@ -2,7 +2,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       BOT_TOKEN: string
-      POSTGRES_URI: string
+      DATABASE_URL: string
       PREFIX: string
       MOD_LOG: string
       SABINE_TOKEN: string
@@ -16,6 +16,7 @@ declare global {
       API_URL: string
       STRIPE_TOKEN: string
       STRIPE_SECRET_WEBHOOK: string
+      REDIS_URL: string
     }
   }
 }

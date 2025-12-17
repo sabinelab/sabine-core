@@ -7,4 +7,6 @@ services:
     container_name: sabine-core
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - '3000:3000'
+    environment:
+      - REDIS_URL=redis://redis:6379
