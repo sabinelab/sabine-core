@@ -22,7 +22,6 @@ export default createCommand({
             invite: ctx.args[2]
           }
         })
-        await Bun.redis.del(`guild:${guild.id}`)
         await ctx.send('Guild added!')
       },
       remove: async() => {
@@ -41,7 +40,6 @@ export default createCommand({
             invite: null
           }
         })
-        await Bun.redis.del(`guild:${guild.id}`)
         await ctx.send('Guild removed!')
       }
     }

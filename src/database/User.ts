@@ -155,7 +155,6 @@ export class SabineUser implements User {
         data: updates
       })
     ])
-    await Bun.redis.del(`user:${this.id}`)
 
     return this
   }
@@ -203,7 +202,6 @@ export class SabineUser implements User {
         }
       })
     ])
-    await Bun.redis.del(`user:${this.id}`)
 
     const channel = client.channels.cache.get(process.env.USERS_LOG) as TextChannel
 
