@@ -291,6 +291,7 @@ enum PremiumType {
 enum Language {
   pt
   en
+  es
 }
 
 enum Game {
